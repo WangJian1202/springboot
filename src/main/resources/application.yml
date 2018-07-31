@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: user
+  datasource:
+    driver-class-name:  com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+    spring:
+       data:
+            elasticsearch:
+                cluster-name: my-application #默认为elasticsearch
+                cluster-nodes: node-1,slave-1,slave-2 #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
+                properties:
+                    path:
+                      logs: ./elasticsearch/log #elasticsearch日志存储目录
+                      data: ./elasticsearch/data #elasticsearch数据存储目录
+    spring:
+        thymeleaf:
+              prefix:  classpath:/templates/
+
+    spring:
+      activemq:
+        broker-url: tcp://127.0.0.1:61616
+        user: admin
+        password: admin
+
+      jms:
+        pub-sub-domain: true
+      pool:
+        enabled: false
+  activemq:
+    in-memory: true
+
+
